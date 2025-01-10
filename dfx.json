@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "DanNFT_backend": {
+      "main": "src/DanNFT_backend/main.mo",
+      "type": "motoko"
+    },
+    "DanNFT_frontend": {
+      "dependencies": [
+        "DanNFT_backend"
+      ],
+      "source": [
+        "src/DanNFT_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "DanNFT_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
