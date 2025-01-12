@@ -4,6 +4,10 @@
       "main": "src/DanNFT_backend/main.mo",
       "type": "motoko"
     },
+    "nft": {
+      "main": "src/NFT/nft.mo",
+      "type" : "motoko"
+    },
     "DanNFT_frontend": {
       "dependencies": [
         "DanNFT_backend"

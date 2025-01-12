@@ -1,31 +1,21 @@
-import { useState } from 'react';
-import { DanNFT_backend } from 'declarations/DanNFT_backend';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Homepage from "./pages/Homepage";
+import Discover from "./pages/Discover";
+import Minter from "./pages/Minter";
+import NFTs from "./pages/NFTs";
 
-function App() {
-  const [greeting, setGreeting] = useState('');
+const App = () => {
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    DanNFT_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
 
-  return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
-  );
+  return(
+    <Routes>
+      <Route path="/" element = {<Homepage />} />
+      <Route path="/discover" element = {<Discover />} />
+      <Route path="/minter" element = {<Minter />} />
+      <Route path="/nft" element = {<NFTs />} />
+    </Routes>
+  )
 }
 
 export default App;
