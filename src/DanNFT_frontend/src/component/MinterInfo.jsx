@@ -7,21 +7,32 @@ import Item from './Item'
 const MinterInfo = () => {
 
   const {register, handleSubmit, formState: { errors }} = useForm()
-  const [nftPrincipal, setnftPrincipal] = useState("")
+  const [nftPrincipal, setNftPrincipal] = useState("")
+  const [loaderHidden, setLoaderHidden] = useState(true)
 
   const onSubmit = async (data) => {
+    setLoaderHidden(false)
     const name = data.name;
     const image = data.image[0];
     const imageByteData = [...new Uint8Array(await image.arrayBuffer())];
 
     const newNFTID = await DanNFT_backend.mint(imageByteData, name);
-    setnftPrincipal(newNFTID.toText())
+    setNftPrincipal(newNFTID)
+    setLoaderHidden(true)
   }
 
 
   if (nftPrincipal == "") {
   return (
     <div className='text-white pt-20'>
+
+        <div hidden={loaderHidden} className="lds-ellipsis">
+          <div hidden={loaderHidden}></div>
+          <div hidden={loaderHidden}></div>
+          <div hidden={loaderHidden}></div>
+          <div hidden={loaderHidden}></div>
+        </div>
+
       <div className="font-bold font-roboto flex justify-center mt-10 text-2xl"> Create NFT </div>
         <div className=' flex flex-col items-center justify-center h-90vh gap-5'>
           <form className="flex flex-col gap-5" noValidate="" autoComplete="off" onSubmit={handleSubmit(onSubmit)} >
@@ -57,7 +68,7 @@ const MinterInfo = () => {
    return( 
    <div>
       <div className='text-white'>Minted</div>
-      <div> <Item /> </div>
+      <div> <Item Nftid={nftPrincipal.toText()} /> </div>
     </div>
     )
   }

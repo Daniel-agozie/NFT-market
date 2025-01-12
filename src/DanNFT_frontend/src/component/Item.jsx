@@ -4,13 +4,14 @@ import { HttpAgent, Actor } from '@dfinity/agent';
 import { idlFactory, nft } from '../../../declarations/nft';
 import { Principal } from '@dfinity/principal';
 
-const Item = () => {
+const Item = ({Nftid}) => {
 
   const [name, setName] = useState();
   const [owner, setOwner] = useState()
   const [image, setImage] = useState()
  
-  const Nftid = Principal.fromText("a3shf-5eaaa-aaaaa-qaafa-cai");
+  // const id = Principal.fromText("a3shf-5eaaa-aaaaa-qaafa-cai");
+  const id = Principal.fromText(Nftid)
 
   const localHost = "http://localhost:3000/";
   const agent = new HttpAgent({host: localHost});
@@ -19,7 +20,7 @@ const Item = () => {
   const loadNft = async () => {
     const nftActor =await Actor.createActor(idlFactory, {
       agent,
-      canisterId: Nftid
+      canisterId: id
     });
 
     const name = await nftActor.getName();
