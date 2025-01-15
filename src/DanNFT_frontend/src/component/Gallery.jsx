@@ -1,12 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Item from './Item'
+import { Principal} from "@dfinity/principal"
 
-const Gallery = () => {
+
+const Gallery = (props) => {
+
+  const [items, setItems] = useState()
+
+  const fetchNFTs = () => {
+    if (props.ids != undefined) {
+      setItems(
+        props.ids.map( (Nftid) => (
+          <Item id={Nftid} key={Nftid.toText()} />
+        ))
+      )
+    }
+  }
+
+  useEffect( () => {
+    fetchNFTs()
+  }, [])
+
   return (
-    <div>
-      <Item id="a3shf-5eaaa-aaaaa-qaafa-cai"/>
+    <div className="text-white  ">
+      <div className='pt-20 flex justify-center font-bold font-roboto'>MY NFTs</div>
+      <div className='flex flex-col justify-center items-center '>
+        <div className='grid grid-cols-2 md:grid-cols-3 gap-7'>{items}</div>
+      </div>
+
     </div>
   )
 }
 
-export default Gallery
+export default Gallery;
+{/* <Item id="a3shf-5eaaa-aaaaa-qaafa-cai"/> */}

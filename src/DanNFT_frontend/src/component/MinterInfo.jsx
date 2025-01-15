@@ -21,7 +21,6 @@ const MinterInfo = () => {
     setLoaderHidden(true)
   }
 
-
   if (nftPrincipal == "") {
   return (
     <div className='text-white pt-20'>

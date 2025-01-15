@@ -1,7 +1,6 @@
 import Debug "mo:base/Debug";
 import Principal "mo:base/Principal";
 
-
 actor class Nft (name: Text, owner: Principal, content: [Nat8]) = this {
 
   let itemName = name;
