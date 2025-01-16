@@ -10,8 +10,8 @@ const Gallery = (props) => {
   const fetchNFTs = () => {
     if (props.ids != undefined) {
       setItems(
-        props.ids.map( (Nftid) => (
-          <Item id={Nftid} key={Nftid.toText()} />
+        props.ids.map( (NFTID) => (
+          <Item Nftid={NFTID} key={NFTID.toText()} />
         ))
       )
     }
