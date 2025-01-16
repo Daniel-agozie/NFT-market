@@ -3,6 +3,8 @@ import logo from "../../public/favicon.ico"
 import { HttpAgent, Actor } from '@dfinity/agent';
 import { idlFactory } from '../../../declarations/nft';
 import { Principal } from '@dfinity/principal';
+import {DanNFT_backend} from "../../../declarations/DanNFT_backend"
+import Button from './Button';
 
 
 const Item = ({Nftid}) => {
@@ -10,6 +12,11 @@ const Item = ({Nftid}) => {
   const [name, setName] = useState();
   const [owner, setOwner] = useState()
   const [image, setImage] = useState()
+  const [button, setButton] = useState()
+  const [priceInput, setPriceInput] = useState()
+  const [loaderHidden, setLoaderHidden] = useState(true)
+  const [blur, setBlur] = useState();
+  const [Listed, setListed] = useState()
  
   // const id = Principal.fromText("a3shf-5eaaa-aaaaa-qaafa-cai");
   const id = Nftid
@@ -18,9 +25,10 @@ const Item = ({Nftid}) => {
     const agent =  HttpAgent.createSync({host: localHost});
   
       agent.fetchRootKey();
-  
+
+  let nftActor;
   const loadNft = async () => {
-    const nftActor = Actor.createActor(idlFactory, {
+     nftActor = Actor.createActor(idlFactory, {
       agent,
       canisterId: id
     });
@@ -35,20 +43,72 @@ const Item = ({Nftid}) => {
     setName(name)
     setOwner(owner.toText())
     setImage(image)
+
+    const nftIsListed = await DanNFT_backend.isListed(Nftid);
+
+    if(nftIsListed) {
+      setOwner("DanNFT")
+      setBlur({filter: 'blur(5px)'})
+      setListed("Listed")
+    } else {
+      setButton(<Button handleClick={handleSell} text={"sell"}/>)
+    }
   }
 
   useEffect(() => {
     loadNft();
   }, [])
 
+  let price;
+
+  const handleSell = () => {
+    setPriceInput(
+      <div>
+      <input className='w-20 rounded-md text-black outline-none' placeholder='price'
+      value={price}
+      onChange={(e) => price = e.target.value}
+      />
+    </div>
+    )
+    setButton(<Button handleClick={sellItem} text={"confirm"}/>)
+  }
+
+  const sellItem = async () => {
+    setBlur({filter: 'blur(5px)'})
+    setLoaderHidden(false)
+    const listing = await DanNFT_backend.listItem(Nftid, Number(price))
+    console.log(listing);
+    
+    if (listing == "success") {
+      const DanNFTid = await DanNFT_backend.getDanNFTCanisterId()
+      const transferResult = await nftActor.transferOwnerShip(DanNFTid)
+      console.log("transfer : " + transferResult);
+      if (transferResult == "success") {
+        setLoaderHidden(true)
+        setButton()
+        setPriceInput()
+        setOwner("DanNFT")
+        setListed("Listed")
+      }
+    }
+  }
+
   return (
     <div className='text-white pt-16 w-44 '>
       <div className=''>
-        <img className='h-56 bg-blue' src={image} alt="NFT info" />
+        <img className='h-56 bg-blue'style={blur} src={image} alt="NFT info" />
+        <div hidden={loaderHidden} className="lds-ellipsis">
+          <div hidden={loaderHidden}></div>
+          <div hidden={loaderHidden}></div>
+          <div hidden={loaderHidden}></div>
+          <div hidden={loaderHidden}></div>
+        </div>
         <div className='flex flex-col justify-center items-center text-light font-monteserrat gap-3'>
-          <div className='font-bold'>{name}</div>
+          <div className='font-bold'>{name} <span className='text-green-500'> {Listed}</span></div>
           <div>Owner: {owner}</div>
-          <button className='bg-blue px-3 py-2 mt-2 rounded-xl'>Sell</button>
+
+          {priceInput}
+          {button}
         </div>
       </div>
     </div>

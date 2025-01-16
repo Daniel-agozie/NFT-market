@@ -43,7 +43,7 @@ const MinterInfo = () => {
                 accept="image/x-png,image/jpeg,image/gif,image/svg+xml,image/webp"
               />
             </div>
-            {errors.image && <div>Image required</div>}
+            {errors.image && <div className='text-red-500'>Image required</div>}
             <div className="font-bold font-playFair">Collection Name</div>
             <div className="">
               <div className="">
@@ -54,7 +54,7 @@ const MinterInfo = () => {
                     className="rounded-md bg-transparent border border-blue"
                 />
               </div>
-              {errors.name && <div>name required</div>}
+              {errors.name && <div className='text-red-500'>name required</div>}
             </div>
             <div className="flex justify-center">
               <button className="bg-blue px-2 py-2 rounded-xl font-monteserrat"  type='submit'>Mint NFT</button>
