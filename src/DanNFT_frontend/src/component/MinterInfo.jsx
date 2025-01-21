@@ -13,10 +13,11 @@ const MinterInfo = () => {
   const onSubmit = async (data) => {
     setLoaderHidden(false)
     const name = data.name;
+    const details = data.content;
     const image = data.image[0];
     const imageByteData = [...new Uint8Array(await image.arrayBuffer())];
 
-    const newNFTID = await DanNFT_backend.mint(imageByteData, name);
+    const newNFTID = await DanNFT_backend.mint(imageByteData, name, details);
     setNftPrincipal(newNFTID)
     setLoaderHidden(true)
   }
@@ -56,6 +57,14 @@ const MinterInfo = () => {
               </div>
               {errors.name && <div className='text-red-500'>name required</div>}
             </div>
+            <div>
+              <input 
+              {...register("content", {required: true})}
+              type="type"
+              placeholder="Details of the NFT ..."
+              />
+            </div>
+            {errors.content && <div className='text-red-500'>Details Required ..</div>}
             <div className="flex justify-center">
               <button className="bg-blue px-2 py-2 rounded-xl font-monteserrat"  type='submit'>Mint NFT</button>
             </div>

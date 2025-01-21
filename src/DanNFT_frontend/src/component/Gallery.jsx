@@ -11,7 +11,7 @@ const Gallery = (props) => {
     if (props.ids != undefined) {
       setItems(
         props.ids.map( (NFTID) => (
-          <Item Nftid={NFTID} key={NFTID.toText()} />
+          <Item Nftid={NFTID} key={NFTID.toText()} role={props.role}/>
         ))
       )
     }
@@ -23,7 +23,7 @@ const Gallery = (props) => {
 
   return (
     <div className="text-white  ">
-      <div className='pt-20 flex justify-center font-bold font-roboto'>MY NFTs</div>
+      <div className='pt-20 flex justify-center font-bold font-roboto'> {props.title}</div>
       <div className='flex flex-col justify-center items-center '>
         <div className='grid grid-cols-2 md:grid-cols-3 gap-7'>{items}</div>
       </div>
