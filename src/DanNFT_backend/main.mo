@@ -6,6 +6,7 @@ import HashMap "mo:base/HashMap";
 import List "mo:base/List";
 import Hash "mo:base/Hash";
 import Iter "mo:base/Iter";
+import Time "mo:base/Time";
 
 actor DanNFTs {
 
@@ -19,12 +20,13 @@ actor DanNFTs {
   var mapOfOwners = HashMap.HashMap<Principal, List.List<Principal>>(1, Principal.equal, Principal.hash);
   var mapOfListings = HashMap.HashMap<Principal, Listing>(1, Principal.equal, Principal.hash);
 
-  public shared(msg) func mint(imgData: [Nat8], name: Text, details: Text) : async Principal {
+  public shared(msg) func mint(imgData: [Nat8], name: Text, details: Text, date: Nat) : async Principal {
     let owner : Principal = msg.caller;
+    let time : Nat = date * 1000000000;
 
     Debug.print(debug_show(Cycles.balance()));
     Cycles.add(100_500_000_000);
-    let newNFT = await NFTActorClass.Nft(name, owner, imgData, details);
+    let newNFT = await NFTActorClass.Nft(name, owner, imgData, details, time);
     Debug.print(debug_show(Cycles.balance()));
 
     let newNFTPrincipal = await newNFT.getCanisterId();
@@ -106,6 +108,6 @@ actor DanNFTs {
     };
 
     return listing.itemPrice;
-  }
+  };
 
 };

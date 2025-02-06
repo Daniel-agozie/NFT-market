@@ -9,10 +9,14 @@ export default {
       fontFamily: {
         playFair: ["Playfair Display", "serif"],
         roboto: ["Roboto", "serif"],
-        monteserrat: ["Montserrat", "serif"]
+        monteserrat: ["Montserrat", "serif"],
+        Quicksand: ["Quicksand", "serif"],
+        Tangerine: ["Tangerine", "serif"],
+        Imperial: ["Imperial Script", "serif"],
+        Chewy: ["Chewy", "serif"]
       },
       height: {
-        '90vh' : '70vh'
+        '90vh' : '75vh'
       },
       colors: {
         hunter: '#40B5AD',
@@ -27,7 +31,7 @@ export default {
         slideup: 'slideup 2s ease-in-out',
         slidedown: 'slidedown 1s ease-in-out',
         slideleft: 'slideleft 3s ease-in-out',
-        slideright: 'slideright 3s ease-in-out',
+        slideright: 'slideright 0.5s ease-in-out',
         sliderightto: 'slideright 0.5s',
         sliderightto1: 'slideright 0.8s linear',
         sliderightto2: 'slideright 1.2s linear',

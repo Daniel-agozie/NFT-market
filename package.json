@@ -19,6 +19,7 @@
     "@dfinity/agent": "^2.2.0",
     "@dfinity/candid": "^2.2.0",
     "@dfinity/principal": "^2.2.0",
+    "axios": "^1.7.9",
     "dayjs": "^1.11.13",
     "node-fetch": "^3.3.2",
     "react-hook-form": "^7.54.2",

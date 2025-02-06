@@ -4,7 +4,7 @@ const PriceLabel = ({sellItem}) => {
   console.log(sellItem);
   
   return (
-    <div className='text-white'>{sellItem} Dan</div>
+    <div className='text-green-600'>{sellItem} Dan</div>
   )
 }
 

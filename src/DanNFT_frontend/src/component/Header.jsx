@@ -17,10 +17,10 @@ const Header = () => {
 
 
   return (
-  <nav className='text-ash flex justify-between items-center p-5 fixed left-0 right-0 border-b h-16 border-blue z-50 bg-coal font-roboto'>
+  <nav className='text-ash flex justify-between items-center p-5 fixed left-0 right-0 top-0 border-b h-16 border-blue z-50 bg-coal font-roboto'>
 
       <div className='flex flex-1'>
-        <NavLink to="/" className='ml-5'>Dan NFT</NavLink>
+        <NavLink to="/" className='ml-5'>Danny NFTs</NavLink>
       </div>
 
       <div className=''>

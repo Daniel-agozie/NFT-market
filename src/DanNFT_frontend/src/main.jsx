@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')).render(
       {/* <ItemProvider> */}
         <App />
       {/* </ItemProvider> */}
-    </React.StrictMode>,
+    </React.StrictMode>
   </Router>
 
 );

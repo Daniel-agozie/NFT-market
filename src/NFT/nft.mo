@@ -1,12 +1,13 @@
 import Debug "mo:base/Debug";
 import Principal "mo:base/Principal";
 
-actor class Nft (name: Text, owner: Principal, content: [Nat8], details: Text) = this {
+actor class Nft (name: Text, owner: Principal, content: [Nat8], details: Text, date: Nat) = this {
 
   private let itemName = name;
   private var nftOwner = owner;
   private let imageBytes = content;
   private let itemContent = details;
+  private let dateContent = date;
 
   public query func getName() : async Text {
     return itemName;
@@ -22,6 +23,10 @@ actor class Nft (name: Text, owner: Principal, content: [Nat8], details: Text) =
 
   public query func getInfo() : async Text {
     return itemContent;
+  };
+
+    public query func getDate() : async Nat {
+    return dateContent;
   };
 
   public query func getCanisterId(): async Principal {

@@ -22,7 +22,7 @@ const Gallery = (props) => {
   }, [])
 
   return (
-    <div className="text-white  ">
+    <div className="text-white">
       <div className='pt-20 flex justify-center font-bold font-roboto'> {props.title}</div>
       <div className='flex flex-col justify-center items-center '>
         <div className='grid grid-cols-2 md:grid-cols-3 gap-7'>{items}</div>

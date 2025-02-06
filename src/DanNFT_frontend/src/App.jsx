@@ -26,6 +26,7 @@ const App = () => {
    useEffect(() => {
      getNFTs()
    }, [])
+   
 
   return(
     <Routes forceRefresh={true} >
