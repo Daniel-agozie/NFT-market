@@ -36,7 +36,7 @@ const Homefeature = () => {
         <div>NO</div>
         <div>Coins</div>
         <div>Price</div>
-        <div> Last 24H</div>
+        <div>24H</div>
       </div>
 
       {cryptoData.map((crypto,idx) => (

@@ -12,8 +12,10 @@ const HomeHeader = () => {
         </div>
       </div>
 
-      <div>Join The Future of Web3</div>
-      <div>Whether you're an artist looking to monetize your work, a gamer seeking rare in-game assets, or a collector for the next digital masterpiece, Danny NFTs is your gateway to the NFT revolution.</div>
+      <div className="flex flex-col m-auto items-center mt-10">
+        <div className="text-xl font-Chewy">Join The Future of Web3</div>
+        <div className="font-roboto text-lg mt-5">Whether you're an artist looking to monetize your work, a gamer seeking rare in-game assets, or a collector for the next digital masterpiece, Danny NFTs is your gateway to the NFT revolution. <span className="text-xl text-green-600 font-bold"> Start Exploring Today. </span></div>
+      </div>
     </div>
   )
 }

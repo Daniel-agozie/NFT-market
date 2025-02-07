@@ -67,8 +67,8 @@ const MinterInfo = () => {
                 // onChange={fileChange}
               />
 
-              <label for="fileInput" className='cursor-pointer py-24 px-24 border border-dotted border-ash hover:text-purple-800 '>
-                {/* <div>{fileName}</div> */}
+              <label for="fileInput" className='cursor-pointer py-24 px-24 border border-dotted border-ash hover:text-purple-800'>
+                <div>{fileName}</div>
               </label>
 
             {errors.image && <div className='text-red-500'>Image required</div>}
